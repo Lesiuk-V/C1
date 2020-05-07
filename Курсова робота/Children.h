@@ -3,17 +3,24 @@
 enum Group
 {
 	first,
-	second
+	second,
+	third,
+	fourth
 };
 class Children : public Human
 {
 private:
 	Group group;
-	int Number_Doc;
+	int number_Doc;
 public:
-	void setGroup(int);
+	void setGroup(int gr);
 	int getNumberDoc();
-	virtual Group getGroup();
+	Group getGroup();
 	virtual void create() override;
+	void read(int pn);
+	void write();
+	void count();
+	void deleteData();
+	void edit();
 };
 
