@@ -24,18 +24,12 @@
     <ClCompile Include="Children.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Parent.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Human.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Children.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="Parent.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
