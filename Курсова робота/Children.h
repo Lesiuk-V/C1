@@ -13,7 +13,6 @@ class Children : public Human
 private:
 	int id;
 	Group group;
-	int Number_Doc;
 	char dateOfExpiry[11];
 	char MomName[50];
 	char DadName[50];

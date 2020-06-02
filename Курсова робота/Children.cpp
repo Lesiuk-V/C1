@@ -39,10 +39,10 @@ void Children::showData()
 
 
 //повернення номеру документу
-int Children::getNumberDoc()
-{
-    return Number_Doc;
-}
+//int Children::getNumberDoc()
+//{
+//    return Number_Doc;
+//}
 
 
 //метод для отримання групи конкретної дитини
@@ -193,7 +193,7 @@ void Children::searchDateOfBirth()
     Children child;
     ifstream ifile;
     char str[40];
-    ifile.open("Citizen.dat", ios::binary | ios::out | ios::in);
+    ifile.open("Children.dat", ios::binary | ios::out | ios::in);
     ifile.seekg(0);
     cout << "Введіть дату народження для пошуку(день.місяць.рік): ";
     cin >> str;
@@ -250,7 +250,7 @@ void Children::deleteData()
     while (!file.eof())
     {
 
-        if (child.Number_Doc != str)
+        if (child.id != str)
         {
             temp.write(reinterpret_cast<char*>(&child), sizeof(Children));
         }
@@ -263,7 +263,7 @@ void Children::deleteData()
     }
     temp.close();
     file.close();
-    if (remove("Citizen.dat") != 0)
+    if (remove("Children.dat") != 0)
     {
         cout << "file was not removed";
     }
@@ -288,7 +288,7 @@ void Children::editData()
     while (!file.eof())
     {
 
-        if (child.Number_Doc != str)
+        if (child.id != str)
         {
             temp.write(reinterpret_cast<char*>(&child), sizeof(Children));
         }
