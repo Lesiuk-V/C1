@@ -4,6 +4,7 @@
 using namespace std;
 
 
+//метод для запису нових даних дитини
 void Children::create()
 {
     cin.ignore(10, '\n');
@@ -16,60 +17,63 @@ void Children::create()
     cout << "Ім'я батька: "; cin >> DadName;
     cout << "Номер телефону матері: "; cin >> MomNumber;
     cout << "Номер телефону батька: "; cin >> DadNumber;
-    setGroup();
-    id = setId();
+    setGroup(); //установка групи
+    id = setId(); //установка ід
 }
 
+//метод для відображення всіх даних дітей
 void Children::showData()
-{
-    cout << "id: " << id << endl;
-    cout << "Ім'я: " << name << endl;
-    cout << "Прізвище: " << surname << endl;
-    cout << "По батькові: " << patronymic << endl;
-    cout << "Група: " << group << endl;
-    cout << "Національність: " << nationality << endl;
-    cout << "Дата народження: " << dateOfBirth << endl;
-    cout << "Ім'я матері: " << MomName << endl;
-    cout << "Ім'я батька: " << DadName << endl;
-    cout << "Номер телефону матері: " << MomNumber << endl;
-    cout << "Номер телефону батька: " << DadNumber << endl;
+{ 
+    cout << "id: "                     << id << endl;
+    cout << "Ім'я: "                   << name << endl;
+    cout << "Прізвище: "               << surname << endl;
+    cout << "По батькові: "            << patronymic << endl;
+    cout << "Група: "                  << group << endl;
+    cout << "Національність: "         << nationality << endl;
+    cout << "Дата народження: "        << dateOfBirth << endl;
+    cout << "Ім'я матері: "            << MomName << endl;
+    cout << "Ім'я батька: "            << DadName << endl;
+    cout << "Номер телефону матері: "  << MomNumber << endl;
+    cout << "Номер телефону батька: "  << DadNumber << endl;
 }
 
+
+//повернення номеру документу
 int Children::getNumberDoc()
 {
     return Number_Doc;
 }
 
 
-
+//метод для отримання групи конкретної дитини
 Group Children::getGroup()
 {
     return group;
 }
 
-
+//метод установки ід
 int Children::setId()
 {
     int tempId;
     string str;
     fstream idfile;
-    idfile.open("childId.txt", fstream::out | fstream::in);
+    idfile.open("childId.txt", fstream::out | fstream::in);//відкриваємо файл, в якому знаходиться записане ід
     ifstream temp;
     while (!idfile.eof())
     {
         getline(idfile, str);
-        tempId = atoi(str.c_str());
+        tempId = atoi(str.c_str());//отримуємо ід з файлу
     }
-    ++tempId;
+    ++tempId; //збільшуємо його на 1
+    idfile.close();//закриваємо зв'язок з файлом
+    idfile.open("childId.txt", fstream::out | fstream::in);//відкриваємо файл з вже збільшеним ід
+    idfile << tempId;//записуємо ід у змінну, яку повертає метод
     idfile.close();
-    idfile.open("childId.txt", fstream::out | fstream::in);
-    idfile << tempId;
-    idfile.close();
-    return tempId;
+    return tempId;//повертаємо змінну
 }
 
 
-
+//метод для установки групи
 void Children::setGroup()
 {
     int g;
@@ -106,7 +110,7 @@ void Children::setGroup()
     }
 }
 
-
+//метод зчитування даних з файлу
 void Children::read(int pn) {
     ifstream ifile;
     ifile.open("Children.dat", ios::binary | ios::out | ios::in);
@@ -117,18 +121,12 @@ void Children::read(int pn) {
     ifile.close();
 }
 
-
+//метод запису даних в файл
 void Children::write() {
     ofstream ofile;
     ofile.open("Children.dat", ios::app | ios::binary | ios::out | ios::in);
     ofile.write((char*)this, sizeof(*this));
     ofile.close();
-}
-
-
-void Children::set_date(int n)
-{
-    cout << "Дійсний до: "; cin >> dateOfExpiry;
 }
 
 
