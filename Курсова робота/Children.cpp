@@ -8,7 +8,6 @@ void Children::create()
 {
     cin.ignore(10, '\n');
     cout << "\nІм'я: "; cin >> name;
-    //cin.ignore(10, '\n');
     cout << "Прізвище: "; cin >> surname;
     cout << "По батькові: "; cin >> patronymic;
     cout << "Національність: "; cin >> nationality;
@@ -27,7 +26,7 @@ void Children::showData()
     cout << "Ім'я: " << name << endl;
     cout << "Прізвище: " << surname << endl;
     cout << "По батькові: " << patronymic << endl;
-    cout << "Група: " << group << endl;
+    cout << "Група: " << group+1 << endl;
     cout << "Національність: " << nationality << endl;
     cout << "Дата народження: " << dateOfBirth << endl;
     cout << "Ім'я матері: " << MomName << endl;
