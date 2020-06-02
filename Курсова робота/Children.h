@@ -3,7 +3,7 @@
 #include <string>
 enum Group
 {
-	first,
+    first,
 	second,
 	third,
 	fourth
@@ -32,6 +32,7 @@ public:
 	void searchName();
 	void searchSurname();
 	void searchDateOfBirth();
+	void searchGroup();
 	void deleteData();
 	void editData();
 	void showData();

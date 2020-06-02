@@ -72,7 +72,8 @@ int main()
                 cout << "1. Пошук за іменем" << endl;
                 cout << "2. Пошук за прізвищем" << endl;
                 cout << "3. Пошук за датою народження" << endl;
-                variant = get_variant(3);
+                cout << "4. Пошук за групою" << endl;
+                variant = get_variant(4);
                 switch (variant)
                 {
                 case 1:
@@ -86,10 +87,13 @@ int main()
                 case 3:
                     child.searchDateOfBirth();
                     break;
+                case 4:
+                    child.searchGroup();
+                    break;
                 }
                 break;
                 system("pause");
-            } while (variant != 3);
+            } while (variant != 4);
             break;
         case 4:
             child.deleteData();
@@ -98,9 +102,9 @@ int main()
             child.editData();
             break;
         }
-        if (variant != 11 || variant == 't')
+        if (variant != 6 || variant == 't')
             system("pause");
-    } while (variant != 11);
+    } while (variant != 6);
     return 0;
 
 }

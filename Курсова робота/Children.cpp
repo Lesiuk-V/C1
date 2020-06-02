@@ -8,7 +8,6 @@ void Children::create()
 {
     cin.ignore(10, '\n');
     cout << "\nІм'я: "; cin >> name;
-    //cin.ignore(10, '\n');
     cout << "Прізвище: "; cin >> surname;
     cout << "По батькові: "; cin >> patronymic;
     cout << "Національність: "; cin >> nationality;
@@ -205,6 +204,29 @@ void Children::searchDateOfBirth()
         ifile.seekg(i * sizeof(Children));
         ifile.read(reinterpret_cast<char*>(&child), sizeof(Children));
         if (0 == strcmp(str, child.dateOfBirth))
+        {
+            child.showData();
+        }
+    }
+    ifile.close();
+}
+
+void Children::searchGroup()
+{
+    Children child;
+    ifstream ifile;
+    int groupSearch;
+    ifile.open("Children.dat", ios::binary | ios::out | ios::in);
+    ifile.seekg(0);
+    cout << "Введіть групу дитячого садка(1, 2, 3, 4): ";
+    cin >> groupSearch;
+    for (int i = 0; i < count(); i++)
+    {
+        
+        ifile.seekg(i * sizeof(Children));
+        ifile.read(reinterpret_cast<char *>(&child), sizeof(Children));
+       
+        if (child.group == groupSearch)
         {
             child.showData();
         }
