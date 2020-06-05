@@ -16,15 +16,31 @@ void print_menu() {
     cout << "6.Вихід" << endl;
     cout << ">";
 }
-int get_variant(int count) {
-    int variant;
-    cin >> variant;
-    if (variant > count)
+int get_variant(int max) {
+    int input = -1;
+    bool valid = false;
+    do
     {
-        cerr << "Помилка! Неправильний ввід\n";
-        return 0;
-    }
-    return variant;
+        cin >> input;
+        if (cin.good())
+        {
+            valid = true;
+            if (input > 0 && input <= max)
+                return input;
+            else
+            {
+                valid = false;
+                cout << "Помилка вводу. Введіть ще раз" << endl;
+            }
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Помилка вводу. Введіть ще раз" << endl;
+        }
+    } while (!valid);
+    return input;
 }
 
 int main()

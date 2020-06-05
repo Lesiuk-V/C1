@@ -28,7 +28,7 @@ void Children::showData()
     cout << "Ім'я: "                   << name << endl;
     cout << "Прізвище: "               << surname << endl;
     cout << "По батькові: "            << patronymic << endl;
-    cout << "Група: "                  << group << endl;
+    cout << "Група: "                  << group +1 << endl;
     cout << "Національність: "         << nationality << endl;
     cout << "Дата народження: "        << dateOfBirth << endl;
     cout << "Ім'я матері: "            << MomName << endl;
@@ -36,13 +36,6 @@ void Children::showData()
     cout << "Номер телефону матері: "  << MomNumber << endl;
     cout << "Номер телефону батька: "  << DadNumber << endl;
 }
-
-
-//повернення номеру документу
-//int Children::getNumberDoc()
-//{
-//    return Number_Doc;
-//}
 
 
 //метод для отримання групи конкретної дитини
@@ -76,38 +69,52 @@ int Children::setId()
 //метод для установки групи
 void Children::setGroup()
 {
-    int g;
     cin.ignore(10, '\n');
     cout << "Група: 1, 2, 3, 4. Введіть групу дитячого садка:";
-    for (;;) {
-        cin >> g;
-        if (g != 1 &&
-            g != 2 &&
-            g != 3 &&
-            g != 4) cout << "Неправильний ввід! Спробуйте ще раз\n";
-        else {
-            switch (g)
+    int input = -1;
+    bool valid = false;
+    do
+    {
+        cin >> input;
+        if (cin.good())
+        {
+            
+            if (input > 0 && input <= 4)
+                valid = true;
+            
+            else
             {
-            case 1:
-                group = first;
-                break;
-            case 2:
-                group = second;
-                break;
-            case 3:
-                group = third;
-                break;
-            case 4:
-                group = fourth;
-                break;
-            default:
-
-                break;
+                valid = false;
+                cout << "Помилка вводу. Введіть ще раз" << endl;
             }
+
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Помилка вводу. Введіть ще раз" << endl;
+        }
+    } while (!valid);
+
+        switch (input)
+        {
+        case 1:
+            group = first;
+            break;
+        case 2:
+            group = second;
+            break;
+        case 3:
+            group = third;
+            break;
+        case 4:
+            group = fourth;
+            break;
+        default:
 
             break;
         }
-    }
 }
 
 //метод зчитування даних з файлу
@@ -137,11 +144,6 @@ int Children::count()
     ifile.seekg(0, ios::end);
     return (int)ifile.tellg() / sizeof(Children);
     ifile.close();
-    //ifstream ifile;
-    //ifile.open("Children.dat ", ios::binary);
-    //ifile.seekg(0, ios::end);
-    //return (int)ifile.tellg() / sizeof(Human);
-    //ifile.close();
 }
 
 #pragma region Children search
@@ -224,7 +226,7 @@ void Children::searchGroup()
         ifile.seekg(i * sizeof(Children));
         ifile.read(reinterpret_cast<char *>(&child), sizeof(Children));
        
-        if (child.group == groupSearch)
+        if (child.group + 1 == groupSearch)
         {
             child.showData();
         }
